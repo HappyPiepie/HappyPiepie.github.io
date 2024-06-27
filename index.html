@@ -56,12 +56,14 @@
         .text-above {
             margin-bottom: 10px;
             font-style: italic;
+            text-align: center;
         }
         .video-container {
             display: flex;
             align-items: center;
             justify-content: space-around;
             margin-top: 20px;
+            position: relative;
         }
         .video-wrapper {
             position: relative;
@@ -88,7 +90,7 @@
         .retrieving-video {
             position: absolute;
             top: -30px;
-            left: -60px;
+            left: -30px;
             font-size: 14px;
             color: red;
             white-space: nowrap;
@@ -96,10 +98,15 @@
         .video-guide {
             position: absolute;
             top: -30px;
-            left: -30px;
+            left: 50%;
+            transform: translateX(-50%);
             font-size: 14px;
             color: black;
             white-space: nowrap;
+        }
+        .text-below {
+            text-align: center;
+            margin-top: 10px;
         }
         footer {
             background: #333;
@@ -144,29 +151,27 @@
                     we retrieve corresponding video descriptions via text, extracting video and text features separately to input into the model trained in the first step for generating human motions.
                 </p>
             </div>
+            <h2>Results</h2>
             <div class="text-above">
                 “a person dribbles a basketball through their legs then runs quickly”
             </div>
             <div class="video-container">
                 <div class="video-wrapper">
                     <video controls>
-                        <source src="FIGS/1.mp4" type="video/mp4">
+                        <source src="FIG/1.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
-                    <div class="retrieving-video">Retrieving Video: <br> dribble through legs</div>
+                </div>
+                <div class="video-wrapper">
+                    <video controls>
+                        <source src="FIG/1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
                 <div class="arrow arrow-right">→</div>
                 <div class="video-wrapper">
                     <video controls>
-                        <source src="FIGS/1.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <div class="video-guide">Video guide</div>
-                </div>
-                <div class="arrow arrow-right">→</div>
-                <div class="video-wrapper">
-                    <video controls>
-                        <source src="FIGS/1.mp4" type="video/mp4">
+                        <source src="FIG/1.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                 </div>
