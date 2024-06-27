@@ -53,24 +53,13 @@
             max-width: 100%;
             height: auto;
         }
-        .video-slider {
-            position: relative;
-            width: 302px;
-            height: 360px;
-            margin: auto;
-            overflow: hidden;
-            background-color: #000;
+        .text-above {
+            margin-bottom: 10px;
+            font-style: italic;
         }
-        .videos {
-            display: flex;
-            transition: transform 0.4s ease-in-out;
-            height: 100%;
-        }
-        video {
-            width: 302px;
-            height: 360px;
-            display: block;
-            flex-shrink: 0;
+        .video-container {
+            max-width: 200px;
+            height: auto;
         }
         .arrow {
             position: absolute;
@@ -84,10 +73,24 @@
             z-index: 10;
         }
         .arrow-left {
-            left: 0;
+            left: -50px;
         }
         .arrow-right {
-            right: 0;
+            right: -50px;
+        }
+        .retrieving-video {
+            position: absolute;
+            top: -30px;
+            left: -60px;
+            font-size: 14px;
+            color: red;
+        }
+        .video-guide {
+            position: absolute;
+            top: -30px;
+            left: -30px;
+            font-size: 14px;
+            color: black;
         }
         footer {
             background: #333;
@@ -99,57 +102,79 @@
     </style>
 </head>
 <body>
-<div class="container">
-    <header>
-        <h1>Retrieving Video for Augmented Human Motion Generation</h1>
-        <div class="author-info">
-            <p>Beibei Jing, Youjia Zhang, Ruomiao Zhou, Zikai Song, Hefei Ling, Junqing Yu, Wei Yang<sup>*</sup></p>
-            <p>Huazhong University of Science and Technology</p>
-        </div>
-    </header>
-    <div class="section">
-        <img src="FIGS/fig1.png" alt="Method">
-        <p>
-            RV2M first retrieves videos from Internet, more specifically YouTube, using input text prompt as query. For effective retrieval, we also optionally decompose the text into verb phrases and fetch anatomical videos and composite a reference video. We extract video features and use them to condition our the autoregressive motion generator for enhanced performances.
-        </p>
-    </div>
-    <div class="main">
+    <div class="container">
+        <header>
+            <h1>Retrieving Video for Augmented Human Motion Generation</h1>
+            <div class="author-info">
+                <p>Beibei Jing, Youjia Zhang, Ruomiao Zhou, Zikai Song, Hefei Ling, Junqing Yu, Wei Yang<sup>*</sup></p>
+                <p>Huazhong University of Science and Technology</p>
+            </div>
+        </header>
         <div class="section">
-            <h2>Abstract</h2>
+            <img src="FIGS/fig1.png" alt="Method">
             <p>
-                Text-driven human motion generation models, propelled by advancements in generative transformers and diffusion models, exhibit remarkable capabilities. However, they  still face considerable challenges due to a scarcity of motion capture data, leading to sub-optimal performance in responding to diverse, unconstrained prompts. In contrast, human activity videos are abundant on the Internet, surpass mocap data by orders of magnitude, yet remains under-utilized in motion generation. 
-               Drawing inspiration from the success of Retrieval Augmented Generation (RAG) in language modeling, this paper introduces a novel framework, RV2M, which integrates video retrieval into motion generation models to enhance their performance.
-               Specifically, the framework incorporates a retrieval module designed to select reference videos from the Internet based on textual prompts. To address scenarios where no exact video match is found for a prompt, we propose a phrase-based retrieval and video composition scheme that maximizes the utilization of available video resources. Subsequently, we develop a video-conditioned autoregressive motion generator and formulate a training strategy that optimally leverages cross-modal data from videos to support the motion generation process.
-               Extensive empirical evaluations reveal that our model outperforms existing state-of-the-art models across multiple metrics, and demonstrates robust adaptability to a wide range of expressions.
+                RV2M first retrieves videos from Internet, more specifically YouTube, using input text prompt as query. For effective retrieval, we also optionally decompose the text into verb phrases and fetch anatomical videos and composite a reference video. We extract video features and use them to condition our the autoregressive motion generator for enhanced performances.
             </p>
         </div>
-        <div class="section">
-            <h2>Method</h2>
-            <img src="FIGS/pipline.png" alt="Method">
-            <p>
-                In the first phase, we train a text-to-motion generation model using residual VQ-VAE and masked modeling. 
-                In the second phase, we select long textual prompts in the Human3D dataset, and retrieve corresponding videos, we only keep panoptic videos with high relevancy for training. We extract features from videos for condition and use the ground-truth motion in dataset for supervision.
-                we retrieve corresponding video descriptions via text, extracting video and text features separately to input into the model trained in the first step for generating human motions.
-            </p>
+        <div class="main">
+            <div class="section">
+                <h2>Abstract</h2>
+                <p>
+                    Text-driven human motion generation models, propelled by advancements in generative transformers and diffusion models, exhibit remarkable capabilities. However, they  still face considerable challenges due to a scarcity of motion capture data, leading to sub-optimal performance in responding to diverse, unconstrained prompts. In contrast, human activity videos are abundant on the Internet, surpass mocap data by orders of magnitude, yet remains under-utilized in motion generation. 
+                   Drawing inspiration from the success of Retrieval Augmented Generation (RAG) in language modeling, this paper introduces a novel framework, RV2M, which integrates video retrieval into motion generation models to enhance their performance.
+                   Specifically, the framework incorporates a retrieval module designed to select reference videos from the Internet based on textual prompts. To address scenarios where no exact video match is found for a prompt, we propose a phrase-based retrieval and video composition scheme that maximizes the utilization of available video resources. Subsequently, we develop a video-conditioned autoregressive motion generator and formulate a training strategy that optimally leverages cross-modal data from videos to support the motion generation process.
+                   Extensive empirical evaluations reveal that our model outperforms existing state-of-the-art models across multiple metrics, and demonstrates robust adaptability to a wide range of expressions.
+                </p>
+            </div>
+            <div class="section">
+                <h2>Method</h2>
+                <img src="FIGS/pipline.png" alt="Method">
+                <p>
+                    In the first phase, we train a text-to-motion generation model using residual VQ-VAE and masked modeling. 
+                    In the second phase, we select long textual prompts in the Human3D dataset, and retrieve corresponding videos, we only keep panoptic videos with high relevancy for training. We extract features from videos for condition and use the ground-truth motion in dataset for supervision.
+                    we retrieve corresponding video descriptions via text, extracting video and text features separately to input into the model trained in the first step for generating human motions.
+                </p>
+            </div>
+            <div class="text-above">
+                “a person dribbles a basketball through their legs then runs quickly”
+            </div>
+            <div class="section">
+                <div class="video-container">
+                    <video controls>
+                        <source src="1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="arrow arrow-left">←</div>
+                <div>
+                    <div class="retrieving-video">Retrieving Video: <br> dribble through legs</div>
+                    <div class="arrow"></div>
+                </div>
+                <div class="video-container">
+                    <video controls>
+                        <source src="1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="arrow arrow-right">→</div>
+                <div>
+                    <div class="video-guide">Video guide</div>
+                    <div class="arrow"></div>
+                </div>
+                <div class="video-container">
+                    <video controls>
+                        <source src="1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+            <div class="text-below">
+                <a href="https://www.youtube.com/watch?v=t99XjrJrNPY">https://www.youtube.com/watch?v=t99XjrJrNPY</a>
+            </div>
+            <footer>
+                <p>&copy; 2024 Beibei Jing, Youjia Zhang, Ruomiao Zhou, Zikai Song, Hefei Ling, Junqing Yu, Wei Yang</p>
+            </footer>
         </div>
     </div>
-    <footer>
-        <p>&copy; 2024 Beibei Jing, Youjia Zhang, Ruomiao Zhou, Zikai Song, Hefei Ling, Junqing Yu, Wei Yang</p>
-    </footer>
-</div>
-<script>
-    let currentSlide = 0;
-    const videosContainer = document.getElementById('videoContainer');
-    const totalVideos = videosContainer.children.length;
-
-    function moveSlide(n) {
-        currentSlide = (currentSlide + n + totalVideos) % totalVideos;
-        const offset = -currentSlide * 302; // 根据视频宽度调整偏移量
-        videosContainer.style.transform = 'translateX(' + offset + 'px)';
-    }
-
-    document.querySelector('.arrow-left').addEventListener('click', () => moveSlide(-1));
-    document.querySelector('.arrow-right').addEventListener('click', () => moveSlide(1));
-</script>
 </body>
 </html>
