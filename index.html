@@ -117,7 +117,10 @@
         <div class="section">
             <h2>Abstract</h2>
             <p>
-                This paper presents a novel approach to generating human motion sequences by retrieving video clips from a large video database. The proposed method is based on a deep neural network that learns a mapping from a query pose to a sequence of video clips that contain similar poses. The network is trained on a large dataset of human motion sequences and learns to generate realistic motion sequences by retrieving and concatenating video clips from the database. The proposed method is evaluated on a dataset of human motion sequences and outperforms state-of-the-art methods in terms of realism and diversity of generated motion sequences.
+                Text-driven human motion generation models, propelled by advancements in generative transformers and diffusion models, exhibit remarkable capabilities. However, they  still face considerable challenges due to a scarcity of motion capture data, leading to sub-optimal performance in responding to diverse, unconstrained prompts. In contrast, human activity videos are abundant on the Internet, surpass mocap data by orders of magnitude, yet remains under-utilized in motion generation. 
+               Drawing inspiration from the success of Retrieval Augmented Generation (RAG) in language modeling, this paper introduces a novel framework, RV2M, which integrates video retrieval into motion generation models to enhance their performance.
+               Specifically, the framework incorporates a retrieval module designed to select reference videos from the Internet based on textual prompts. To address scenarios where no exact video match is found for a prompt, we propose a phrase-based retrieval and video composition scheme that maximizes the utilization of available video resources. Subsequently, we develop a video-conditioned autoregressive motion generator and formulate a training strategy that optimally leverages cross-modal data from videos to support the motion generation process.
+               Extensive empirical evaluations reveal that our model outperforms existing state-of-the-art models across multiple metrics, and demonstrates robust adaptability to a wide range of expressions.
             </p>
         </div>
         <div class="section">
