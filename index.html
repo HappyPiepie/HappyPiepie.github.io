@@ -1,5 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Paper Showcase</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+        .author-info {
+            text-align: center;
+            margin: 10px 0;
+            font-size: 1.2em;
+        }
+        .main {
+            padding: 20px;
+            background: #fff;
+            margin-top: 20px;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #333;
+            font-size: 1.5em;
+            border-bottom: 2px solid #77aaff;
+            padding-bottom: 10px;
+        }
+        p {
+            font-size: 1em;
+            line-height: 1.6;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .text-above {
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+        .video-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .video-wrapper {
+            position: relative;
+            display: inline-block;
+            text-align: center;
+        }
+        .video-wrapper video {
+            max-width: 200px;
+            height: auto;
+        }
+        .arrow {
+            position: absolute;
+            top: 50%;
+            font-size: 2em;
+            color: #000;
+            z-index: 10;
+        }
+        .arrow-left {
+            left: -50px;
+        }
+        .arrow-right {
+            right: -50px;
+        }
+        .retrieving-video {
+            position: absolute;
+            top: -30px;
+            left: -60px;
+            font-size: 14px;
+            color: red;
+            white-space: nowrap;
+        }
+        .video-guide {
+            position: absolute;
+            top: -30px;
+            left: -30px;
+            font-size: 14px;
+            color: black;
+            white-space: nowrap;
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+    </style>
+</head>
 <body>
     <div class="container">
         <header>
@@ -37,32 +147,26 @@
             <div class="text-above">
                 “a person dribbles a basketball through their legs then runs quickly”
             </div>
-            <div class="section">
-                <div class="video-container">
+            <div class="video-container">
+                <div class="video-wrapper">
                     <video controls>
-                        <source src="1.mp4" type="video/mp4">
+                        <source src="FIGS/1.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
-                </div>
-                <div class="arrow arrow-left">←</div>
-                <div>
                     <div class="retrieving-video">Retrieving Video: <br> dribble through legs</div>
-                    <div class="arrow"></div>
-                </div>
-                <div class="video-container">
-                    <video controls>
-                        <source src="1.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
                 </div>
                 <div class="arrow arrow-right">→</div>
-                <div>
-                    <div class="video-guide">Video guide</div>
-                    <div class="arrow"></div>
-                </div>
-                <div class="video-container">
+                <div class="video-wrapper">
                     <video controls>
-                        <source src="1.mp4" type="video/mp4">
+                        <source src="FIGS/1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-guide">Video guide</div>
+                </div>
+                <div class="arrow arrow-right">→</div>
+                <div class="video-wrapper">
+                    <video controls>
+                        <source src="FIGS/1.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                 </div>
@@ -70,10 +174,10 @@
             <div class="text-below">
                 <a href="https://www.youtube.com/watch?v=t99XjrJrNPY">https://www.youtube.com/watch?v=t99XjrJrNPY</a>
             </div>
-            <footer>
-                <p>&copy; 2024 Beibei Jing, Youjia Zhang, Ruomiao Zhou, Zikai Song, Hefei Ling, Junqing Yu, Wei Yang</p>
-            </footer>
         </div>
+        <footer>
+            <p>&copy; 2024 Beibei Jing, Youjia Zhang, Ruomiao Zhou, Zikai Song, Hefei Ling, Junqing Yu, Wei Yang</p>
+        </footer>
     </div>
 </body>
 </html>
