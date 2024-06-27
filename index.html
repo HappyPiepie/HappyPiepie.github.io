@@ -3,16 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>xijing-webdesign</title>
+    <title>Research Paper Showcase</title>
     <style>
         body {
-            background-color: black;
-            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+        .author-info {
+            text-align: center;
+            margin: 10px 0;
+            font-size: 1.2em;
+        }
+        .main {
+            padding: 20px;
+            background: #fff;
+            margin-top: 20px;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #333;
+            font-size: 1.5em;
+            border-bottom: 2px solid #77aaff;
+            padding-bottom: 10px;
+        }
+        p {
+            font-size: 1em;
+            line-height: 1.6;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .video-slider {
+            position: relative;
+            width: 302px;
+            height: 360px;
+            margin: auto;
+            overflow: hidden;
+            background-color: #000;
+        }
+        .videos {
+            display: flex;
+            transition: transform 0.4s ease-in-out;
+            height: 100%;
+        }
+        video {
+            width: 302px;
+            height: 360px;
+            display: block;
+            flex-shrink: 0;
+        }
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2em;
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.5);
+            border: none;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .arrow-left {
+            left: 0;
+        }
+        .arrow-right {
+            right: 0;
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <h1>hello world</h1>
-    <p>这是xijing-design的第一个网页，这个网页托管在github上。欢迎大家访问!</p>
+<div class="container">
+    <header>
+        <h1>Retrieving Video for Augmented Human Motion Generation</h1>
+        <div class="author-info">
+            <p>Beibei Jing, Youjia Zhang, Ruomiao Zhou, Zikai Song, Hefei Ling, Junqing Yu, Wei Yang<sup>*</sup></p>
+            <p>Huazhong University of Science and Technology</p>
+        </div>
+    </header>
+    <div class="section">
+        <img src="FIGS/fig1.png" alt="Method">
+        <p>
+            RV2M first retrieves videos from Internet, more specifically YouTube, using input text prompt as query. For effective retrieval, we also optionally decompose the text into verb phrases and fetch anatomical videos and composite a reference video. We extract video features and use them to condition our the autoregressive motion generator for enhanced performances.
+        </p>
+    </div>
+    <div class="main">
+        <div class="section">
+            <h2>Abstract</h2>
+            <p>
+                This paper presents a novel approach to generating human motion sequences by retrieving video clips from a large video database. The proposed method is based on a deep neural network that learns a mapping from a query pose to a sequence of video clips that contain similar poses. The network is trained on a large dataset of human motion sequences and learns to generate realistic motion sequences by retrieving and concatenating video clips from the database. The proposed method is evaluated on a dataset of human motion sequences and outperforms state-of-the-art methods in terms of realism and diversity of generated motion sequences.
+            </p>
+        </div>
+        <div class="section">
+            <h2>Method</h2>
+            <img src="FIGS/pipline.png" alt="Method">
+            <p>
+                In the first phase, we train a text-to-motion generation model using residual VQ-VAE and masked modeling. 
+                In the second phase, we select long textual prompts in the Human3D dataset, and retrieve corresponding videos, we only keep panoptic videos with high relevancy for training. We extract features from videos for condition and use the ground-truth motion in dataset for supervision.
+                we retrieve corresponding video descriptions via text, extracting video and text features separately to input into the model trained in the first step for generating human motions.
+            </p>
+        </div>
+        <div class="section">
+            <h2>Results</h2>
+            <div class="video-slider">
+                <button class="arrow arrow-left" onclick="moveSlide(-1)">&#10094;</button>
+                <div class="videos" id="videoContainer">
+                    <video src="FIGS/1.mp4" controls></video>
+                    <video src="FIGS/2.mp4" controls></video>
+                    <video src="FIGS/3.mp4" controls></video>
+                </div>
+                <button class="arrow arrow-right" onclick="moveSlide(1)">&#10095;</button>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Beibei Jing, Youjia Zhang, Ruomiao Zhou, Zikai Song, Hefei Ling, Junqing Yu, Wei Yang</p>
+    </footer>
+</div>
+<script>
+    let currentSlide = 0;
+    const videosContainer = document.getElementById('videoContainer');
+    const totalVideos = videosContainer.children.length;
+
+    function moveSlide(n) {
+        currentSlide = (currentSlide + n + totalVideos) % totalVideos;
+        const offset = -currentSlide * 302; // 根据视频宽度调整偏移量
+        videosContainer.style.transform = 'translateX(' + offset + 'px)';
+    }
+
+    document.querySelector('.arrow-left').addEventListener('click', () => moveSlide(-1));
+    document.querySelector('.arrow-right').addEventListener('click', () => moveSlide(1));
+</script>
 </body>
 </html>
