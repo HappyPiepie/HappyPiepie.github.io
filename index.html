@@ -48,10 +48,14 @@
         p {
             font-size: 1em;
             line-height: 1.6;
+            width: 100%;
+            box-sizing: border-box;
         }
         img {
             max-width: 100%;
             height: auto;
+            display: block;
+            margin: 0 auto;
         }
         .text-above {
             margin-bottom: 10px;
@@ -75,22 +79,26 @@
             height: auto;
         }
         .arrow {
-            position: absolute;
-            top: 50%;
             font-size: 2em;
             color: #000;
             z-index: 10;
         }
         .arrow-left {
-            left: -50px;
+            position: absolute;
+            top: 50%;
+            left: calc(50% - 150px);
+            transform: translateY(-50%);
         }
         .arrow-right {
-            right: -50px;
+            position: absolute;
+            top: 50%;
+            right: calc(50% - 150px);
+            transform: translateY(-50%);
         }
         .retrieving-video {
             position: absolute;
             top: -30px;
-            left: -30px;
+            left: -60px;
             font-size: 14px;
             color: red;
             white-space: nowrap;
@@ -158,20 +166,21 @@
             <div class="video-container">
                 <div class="video-wrapper">
                     <video controls>
-                        <source src="FIGS/1.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-                <div class="video-wrapper">
-                    <video controls>
-                        <source src="FIGS/1.mp4" type="video/mp4">
+                        <source src="video1.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                 </div>
                 <div class="arrow arrow-right">→</div>
                 <div class="video-wrapper">
                     <video controls>
-                        <source src="FIGS/1.mp4" type="video/mp4">
+                        <source src="video2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="arrow arrow-right">→</div>
+                <div class="video-wrapper">
+                    <video controls>
+                        <source src="video3.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                 </div>
