@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retrieving Video for Augmented Human Motion Generation</title>
+    <meta name="description" content="Retrieving Video for Augmented Human Motion Generation">
+    <meta name="keywords" content="RV2M, Retrieving Video for Augmented Human Motion Generation, Research Paper, Beibei Jing, Youjia Zhang, Ruomiao Zhou, Zikai Song, Hefei Ling, Junqing Yu, Wei Yang">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+        .author-info {
+            text-align: center;
+            margin: 10px 0;
+            font-size: 1.2em;
+        }
+        .main {
+            padding: 20px;
+            background: #fff;
+            margin-top: 20px;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #333;
+            font-size: 1.5em;
+            border-bottom: 2px solid #77aaff;
+            padding-bottom: 10px;
+        }
+        p {
+            font-size: 1em;
+            line-height: 1.6;
+            max-width: 100%;
+            box-sizing: border-box;
+            margin: 0 auto;
+            text-align: justify; /* Adding this for justified alignment */
+        }
+        img {
+            max-width: 90%; /* Scaling image to 90% */
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        .text-above {
+            margin-bottom: 10px;
+            font-style: italic;
+            text-align: center;
+        }
+        .gif-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            margin-top: 20px;
+            position: relative;
+            margin-left: 7px;
+            margin-right: 7px;
+        }
+        .gif-wrapper {
+            position: relative;
+            display: inline-block;
+            text-align: center;
+        }
+        .gif-wrapper img {
+            width: 150%;
+        }
+        .gif-wrapper p {
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            margin: 0;
+            padding: 5px;
+            color: white;
+            border-radius: 5px;
+            width: calc(100% - 20px); 
+            text-align: center;  
+            font-style: italic;
+             font-size: 10px;
+/* Adjust width to fit within the GIF wrapper */
+        }
+        .arrow {
+            font-size: 2em;
+            color: #000;
+            z-index: 10;
+        }
+        .arrow-left {
+            position: absolute;
+            top: 50%;
+            left: calc(50% - 150px);
+            transform: translateY(-50%);
+        }
+        .arrow-right {
+            position: absolute;
+            top: 50%;
+            right: calc(50% - 150px);
+            transform: translateY(-50%);
+        }
+        .retrieving-video {
+            position: absolute;
+            top: -30px;
+            left: -60px;
+            font-size: 14px;
+            color: red;
+            white-space: nowrap;
+        }
+        .video-guide {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+            color: black;
+            white-space: nowrap;
+        }
+        .text-below {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .icon-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            margin-top: 30px;
+        }
+        .icon-container a {
+            display: block;
+            width: 50px;
+            height: 50px;
+            margin: 0 40px; /* Add margin between icons */
+        }
+        .icon-container img {
+            max-width: 100%;
+            height: auto;
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+        @media (max-width: 600px) {
+            .container {
+                width: 100%;
+            }
+            .gif-wrapper img {
+                max-width: 150px;
+            }
+            .arrow {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Retrieving Video for Augmented Human Motion Generation</h1>
+            <div class="author-info">
+                Beibei Jing, Youjia Zhang, Ruomiao Zhou, Zikai Song, Hefei Ling, Junqing Yu, Wei Yang<sup>*</sup>
+            </div>
+            <div class="text-above">
+                Huazhong University of Science and Technology
+            </div>
+        </header>
+        <div class="icon-container">
+            <a href="https://link1.com"><img src="FIGS/icons/paper.png" alt="Icon 1"></a>
+            <a href="https://github.com/HappyPiepie/RV2M/tree/main"><img src="FIGS/icons/github.png" alt="Icon 2"></a>
+            <a href="https://github.com/EricGuo5513/HumanML3D"><img src="FIGS/icons/database.svg" alt="Icon 3"></a>
+        </div>
+        <div class="section">
+            <h2>Overview</h2>
+            <img src="FIGS/fig1.png" alt="Method">
+            <img src="FIGS/overview.gif" alt="Method">
+            <p>
+                RV2M first retrieves videos from Internet, more specifically YouTube, using input text prompt as query. For effective retrieval, we also optionally decompose the text into verb phrases and fetch anatomical videos and composite a reference video. We extract video features and use them to condition our the autoregressive motion generator for enhanced performances.
+            </p>
+        </div>
+        <div class="main">
+            <div class="section">
+                <h2>Abstract</h2>
+                <p>
+                    Text-driven human motion generation models, propelled by advancements in generative transformers and diffusion models, exhibit remarkable capabilities. However, they still face considerable challenges due to a scarcity of motion capture data, leading to sub-optimal performance in responding to diverse, unconstrained prompts. In contrast, human activity videos are abundant on the Internet, surpass mocap data by orders of magnitude, yet remains under-utilized in motion generation. 
+                   Drawing inspiration from the success of Retrieval Augmented Generation (RAG) in language modeling, this paper introduces a novel framework, RV2M, which integrates video retrieval into motion generation models to enhance their performance.
+                   Specifically, the framework incorporates a retrieval module designed to select reference videos from the Internet based on textual prompts. To address scenarios where no exact video match is found for a prompt, we propose a phrase-based retrieval and video composition scheme that maximizes the utilization of available video resources. Subsequently, we develop a video-conditioned autoregressive motion generator and formulate a training strategy that optimally leverages cross-modal data from videos to support the motion generation process.
+                   Extensive empirical evaluations reveal that our model outperforms existing state-of-the-art models across multiple metrics, and demonstrates robust adaptability to a wide range of expressions.
+                </p>
+            </div>
+            <div class="section">
+                <h2>Method</h2>
+                <img src="FIGS/pipline.png" alt="Method">
+                <p>
+                    In the first phase, we train a text-to-motion generation model using residual VQ-VAE and masked modeling. 
+                    In the second phase, we select long textual prompts in the Human3D dataset, and retrieve corresponding videos, we only keep panoptic videos with high relevancy for training. We extract features from videos for condition and use the ground-truth motion in dataset for supervision.
+                    we retrieve corresponding video descriptions via text, extracting video and text features separately to input into the model trained in the first step for generating human motions.
+                </p>
+            </div>
+            <h2>Results</h2>
+            <div class="text-above">
+                    <h3>Text to motion--------------------->Retrieve videos--------------------->Results</h3>
+            </div>
+            <div class="text-above">
+                “a person runs and then jumps.”
+            </div>
+            <div class="text-below">
+                <a href="https://www.youtube.com/shorts/TIvoUjc2v54">https://www.youtube.com/shorts/TIvoUjc2v54</a>
+            </div>
+            <div class="gif-container">
+                <div class="gif-wrapper">
+                    <img src="FIGS/jumps/T.gif" alt="GIF 1">
+                </div>
+                <div class="gif-wrapper">
+                    <img src="FIGS/jumps/V.gif" alt="GIF 2">
+                </div>
+                <div class="gif-wrapper">
+                    <img src="FIGS/jumps/F_.gif" alt="GIF 3">
+                </div>
+            </div>
+            <div>
+                <p>
+                   ----------------------------------------------------------------------------------------------------------------------------------------------
+                </p>
+            </div>
+            <div class="text-above">
+                “a person dribbles a basketball through their legs then runs quickly.”
+            </div>
+            <div class="text-below">
+                <a href="https://www.youtube.com/watch?v=t99XjIrJnPY">https://www.youtube.com/watch?v=t99XjIrJnPY</a>
+            </div>
+            <div class="gif-container">
+                <div class="gif-wrapper">
+                    <img src="FIGS/dribble/T.gif" alt="GIF 1">
+                </div>
+                <div class="gif-wrapper">
+                    <img src="FIGS/dribble/V.gif" alt="GIF 2">
+                </div>
+                <div class="gif-wrapper">
+                    <img src="FIGS/dribble/F.gif" alt="GIF 3">
+                </div>
+            </div>
+            <div>
+                <p>
+                   ----------------------------------------------------------------------------------------------------------------------------------------------
+                </p>
+        </div>
+        <div class="text-above">
+                “A person is performing a 360-degree spin jump.”
+            </div>
+            <div class="text-below">
+                <a href="https://www.youtube.com/watch?v=jamxtNEd1iw">https://www.youtube.com/watch?v=jamxtNEd1iw</a>
+            </div>
+            <div class="gif-container">
+                <div class="gif-wrapper">
+                    <img src="FIGS/360/T.gif" alt="GIF 1">
+                </div>
+                <div class="gif-wrapper">
+                    <img src="FIGS/360/V.gif" alt="GIF 2">
+                </div>
+                <div class="gif-wrapper">
+                    <img src="FIGS/360/F.gif" alt="GIF 3">
+                </div>
+            </div>
+            <div>
+                <p>
+                   ----------------------------------------------------------------------------------------------------------------------------------------------
+                </p>
+        </div>
+        <div class="text-above">
+                “person is acting like a human monkey.”
+            </div>
+            <div class="text-below">
+                <a href="https://www.youtube.com/shorts/m5UlVKgOKSo?app=desktop">https://www.youtube.com/shorts/m5UlVKgOKSo?app=desktop</a>
+            </div>
+            <div class="gif-container">
+                <div class="gif-wrapper">
+                    <img src="FIGS/monkey/T.gif" alt="GIF 1">
+                </div>
+                <div class="gif-wrapper">
+                    <img src="FIGS/monkey/V.gif" alt="GIF 2">
+                </div>
+                <div class="gif-wrapper">
+                    <img src="FIGS/monkey/F.gif" alt="GIF 3">
+                </div>
+            </div>
+            <div>
+                <p>
+                   ----------------------------------------------------------------------------------------------------------------------------------------------
+                </p>
+             </div>
+            <div class="gif-container">
+                <div class="gif-wrapper">
+                    <p>
+                    “said person walked over and sit down.”
+                    </p>
+                    <div class="gif-container">
+                    <div class="gif-wrapper">
+                        <img src="FIGS/sit/V1.gif" alt="GIF 1">
+                    </div>
+                    <div class="gif-wrapper">
+                    <img src="FIGS/sit/V2.gif" alt="GIF 3">
+                    </div>
+                    </div>
+                        <img src="FIGS/sit/F.gif" alt="GIF 1">
+                </div>
+                <div class="gif-wrapper">
+                    <p>
+                    “a person swift the upper codre body, and start to stretch it.”
+                    </p>
+                    <div class="gif-container">
+                    <div class="gif-wrapper">
+                        <img src="FIGS/codre/V1.gif" alt="GIF 1">
+                    </div>
+                    <div class="gif-wrapper">
+                    <img src="FIGS/codre/V2.gif" alt="GIF 3">
+                    </div>
+                    </div>
+                    <img src="FIGS/codre/F.gif" alt="GIF 2">
+                </div>
+                <div class="gif-wrapper">
+                    <p>
+                    “the man is dancing around.”
+                    </p>
+                    <div class="gif-container">
+                    <div class="gif-wrapper">
+                    <img src="FIGS/dancing/V_.gif" alt="GIF 3">
+                    </div>
+                    <div class="gif-wrapper">
+                    <img src="FIGS/dancing/V_.gif" alt="GIF 3">
+                    </div>
+                    </div>
+                    <img src="FIGS/dancing/F1.gif" alt="GIF 3">
+                </div>
+             </div>
+            <div class="gif-container">
+                <div class="gif-wrapper">
+                    <p>
+                    “a person jumps repeatedly, waving their hands in circles.”
+                    </p>
+                    <div class="gif-container">
+                    <div class="gif-wrapper">
+                    <img src="FIGS/circles/V1_.gif" alt="GIF 3">
+                    </div>
+                    <div class="gif-wrapper">
+                    <img src="FIGS/circles/V2_.gif" alt="GIF 3">
+                    </div>
+                    <div class="gif-wrapper">
+                    <img src="FIGS/circles/V3_.gif" alt="GIF 3">
+                    </div>
+                    </div>
+                    <img src="FIGS/circles/F.gif" alt="GIF 1">
+                </div>
+                <div class="gif-wrapper">
+                     <p>
+                    “a man does fighting movements kicks in the air punches the air and stops.”
+                    </p>
+                    <div class="gif-container">
+                    <div class="gif-wrapper">
+                    <img src="FIGS/punches/V1_.gif" alt="GIF 3">
+                    </div>
+                    <div class="gif-wrapper">
+                    <img src="FIGS/punches/V2_.gif" alt="GIF 3">
+                    </div>
+                    <div class="gif-wrapper">
+                    <img src="FIGS/punches/V3_.gif" alt="GIF 3">
+                    </div>
+                    </div>
+                    <img src="FIGS/punches/F.gif" alt="GIF 3">
+                </div>
+                <div class="gif-wrapper">
+                    <p>
+                    “person got down and is crawling across the floor.”
+                    </p>
+                    <div class="gif-container">
+                    <div class="gif-wrapper">
+                    <img src="FIGS/floor/V_.gif" alt="GIF 3">
+                    </div>
+                    <div class="gif-wrapper">
+                    <img src="FIGS/floor/V2_.gif" alt="GIF 3">
+                    </div>
+                    <div class="gif-wrapper">
+                    <img src="FIGS/floor/V2_.gif" alt="GIF 3">
+                    </div>
+                    </div>
+                    <img src="FIGS/floor/F.gif" alt="GIF 3">
+                </div>
+                <div class="gif-wrapper">
+                    <p>
+                    “a person holds something above, and swings.”
+                    </p>
+                    <div class="gif-container">
+                    <div class="gif-wrapper">
+                    <img src="FIGS/swings/V_.gif" alt="GIF 3">
+                    </div>
+                    <div class="gif-wrapper">
+                    <img src="FIGS/swings/V_.gif" alt="GIF 3">
+                    </div>
+                    <div class="gif-wrapper">
+                    <img src="FIGS/swings/V_.gif" alt="GIF 3">
+                    </div>
+                    </div>
+                    <img src="FIGS/swings/F.gif" alt="GIF 3">
+                </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            &copy; 2024 Beibei Jing, Youjia Zhang, Ruomiao Zhou, Zikai Song, Hefei Ling, Junqing Yu, Wei Yang
+        </footer>
+    </div>
+</body>
+</html>
